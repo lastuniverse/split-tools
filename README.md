@@ -26,8 +26,11 @@ const splitter = new Splitter(options?);
     - **group1, group2, ..., groupN** bracket groups specified in RegExp
     - **text** other parameters, such as offset and source string (see string.replace). By virtue of the algorithm used to separate lines, they do not carry reliable values.
 
+## It is important!!!
+The order of adding matchers does matter. Matchers will be processed in the same order in which they were added.
+
+
 ## Sample
-**It is important!!!*** The order of adding matchers does matter. matchers will be processed in the same order in which they were added.
 ```javascript
 const Splitter = require('split-tools');
 

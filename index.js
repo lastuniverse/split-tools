@@ -4,25 +4,48 @@ class Splitter {
 		this.matchers = {};
 		this.parsers = {};
 		this.index = 0;
-		if(options.matchers && typeof options.matchers === "object")
-			Object
-				.keys(options.matchers)
-				.forEach(id=>{
-					this.matcher(id, options.matchers[id]);
-				});
+		
+		if(!options || typeof options !== "object" )
+			return;
+
+		this.addMatchers(options.matchers);
+		this.addParsers(options.parsers);
 	}
 
-	parser(id,cb){
+	addParsers(json){
+		if(json && typeof json === "object")
+			Object
+				.keys(json)
+				.forEach(id=>{
+					this.addParser(id, json[id]);
+				});	
+	}
+
+	addParser(id,cb){
+		if(!id || typeof id !== "string" )
+			return;
+
+		if( !cb || typeof cb !== "function" )
+			return;
+
 		this.parsers[id] = cb;
 	}
 
-	parse(id,...data){
-		if(	this.parsers[id] )
-			return this.parsers[id](...data);
+
+	addMatchers(json){
+		if(json && typeof json === "object")
+			Object
+				.keys(json)
+				.forEach(id=>{
+					this.addMatcher(id, json[id]);
+				});	
 	}
 
-	matcher(id, matcher){
-		if( !id )
+	addMatcher(id, matcher){
+		if(!id || typeof id !== "string" )
+			return;
+
+		if( !matcher )
 			return;
 
 		if( typeof matcher === "string" )
@@ -48,6 +71,13 @@ class Splitter {
 		};
 	}
 
+
+	parse(id,...data){
+		if(	this.parsers[id] )
+			return this.parsers[id](...data);
+		return data[0];
+	}
+
 	process(text){
 		const matchers = Object
 			.values(this.matchers)
@@ -58,16 +88,16 @@ class Splitter {
 
 		const list = [];
 
-		this.subproccess(text, matchers, list);
+		this.subProccess(text, matchers, list);
 		
 		return list;
 	}
 	
-	subproccess(text, matchers, list){
-		console.log("\n\nSTART:",text,"\n", matchers,"\n", list);
+	subProccess(text, matchers, list){
+		// console.log("\n\nSTART:",text,"\n", matchers,"\n", list);
 		if( !matchers.length ){
-			console.log("subproccess: text 00");
-			list.push(	this.parse("unmatched",text)||text );
+			// console.log("subProccess: text 00");
+			list.push(	this.parse("unmatched",text) );
 			return;
 		}
 
@@ -87,26 +117,26 @@ class Splitter {
 				
 				if( index > offset ){
 					const pre_text = text.substring(offset, index);
-					console.log("\nsubproccess: pre_text 00", pre_text);
-					this.subproccess(pre_text, matchers.slice(0), list);	
+					// console.log("\subProccess: pre_text 00", pre_text);
+					this.subProccess(pre_text, matchers.slice(0), list);	
 				}
 
 				offset = index+sub_text.length;
 
-				console.log("\nsubproccess: sub_text 00", sub_text);
-				list.push(	this.parse(matcher.id, ...argv) || sub_text );
+				// console.log("\subProccess: sub_text 00", sub_text);
+				list.push(	this.parse(matcher.id, ...argv) );
 
 			}
 		);
 
-		console.log("\nCENTER");
+		// console.log("\nCENTER");
 		if( offset < text.length ){
 			const post_text = text.substring(offset, text.length);
-			console.log("\nsubproccess: post_text 00", post_text);
-			this.subproccess(post_text, matchers.slice(0), list);	
+			// console.log("\subProccess: post_text 00", post_text);
+			this.subProccess(post_text, matchers.slice(0), list);	
 		}
 
-		console.log("\END");
+		// console.log("\END");
 
 	}
 

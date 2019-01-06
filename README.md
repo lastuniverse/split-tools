@@ -1,5 +1,35 @@
 # split-tools
-advanced text splitter
+
+> advanced text splitter
+
+> Turn a text string into a array (optional items as tokens)
+
+
+[![NPM version][npm-image]][npm-url]
+[![Dependency Status][david-image]][david-url]
+[![License][license-image]][license-url]
+[![Downloads][downloads-image]][downloads-url]
+
+## Installation
+
+```
+npm install split-tools --save
+```
+
+## Usage
+
+```javascript
+var Splitter = require('split-tools');
+
+var splitter = new Splitter(options?);
+```
+
+- **options**
+  - **matchers** An associative array in which the key is an arbitrary token ID, the value is a string or a regular expression to match
+  - **parsers** An associative array in which the key is an arbitrary token ID, the value is a converter function that takes values:
+    - **text** part of the text matched with RegExp specified for identical ID
+    - **group1, group2, ..., groupN** bracket groups specified in RegExp
+    - **text** other parameters, such as offset and source string (see string.replace). By virtue of the algorithm used to separate lines, they do not carry reliable values.
 
 
 

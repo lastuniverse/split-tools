@@ -20,8 +20,8 @@ const Splitter = require('split-tools');
 const splitter = new Splitter(options?);
 ```
 - **options**
-  - **matchers** An associative array in which the key is an arbitrary token ID, the value is a string or a regular expression to match
-  - **parsers** An associative array in which the key is an arbitrary token ID, the value is a converter function that takes values:
+  - **matchers** аn associative array in which the key is an arbitrary token ID, the value is a string or a regular expression to match
+  - **parsers** аn associative array in which the key is an arbitrary token ID, the value is a converter function that takes values:
     - **text** part of the text matched with RegExp specified for identical ID
     - **group1, group2, ..., groupN** bracket groups specified in RegExp
     - **other parameters** such as offset and source string (see string.replace). By virtue of the algorithm used to separate lines, they do not carry reliable values.

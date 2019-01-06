@@ -97,7 +97,10 @@ class Splitter {
 		// console.log("\n\nSTART:",text,"\n", matchers,"\n", list);
 		if( !matchers.length ){
 			// console.log("subProccess: text 00");
-			list.push(	this.parse("unmatched",text) );
+			const item = this.parse("unmatched",text);
+			if( item !== undefined )
+				list.push( item );
+
 			return;
 		}
 
@@ -124,7 +127,9 @@ class Splitter {
 				offset = index+sub_text.length;
 
 				// console.log("\subProccess: sub_text 00", sub_text);
-				list.push(	this.parse(matcher.id, ...argv) );
+				const item = this.parse(matcher.id, ...argv);
+				if( item !== undefined )
+					list.push( item );
 
 			}
 		);

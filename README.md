@@ -27,7 +27,7 @@ const splitter = new Splitter(options?);
     - **text** other parameters, such as offset and source string (see string.replace). By virtue of the algorithm used to separate lines, they do not carry reliable values.
 
 ## Sample
-It is important to understand how the key `:key` is interpreted depending on the pattern `:key(.*)` used and quantifiers `:key*`. The following examples will help you understand the logic for obtaining key values.
+**It is important!!!*** The order of adding matchers does matter. matchers will be processed in the same order in which they were added.
 ```javascript
 const Splitter = require('split-tools');
 
@@ -97,8 +97,7 @@ console.log(list);
   { type: 'comment1', data: 'aaaaaaaaaaaaaa' },
   { type: 'text', data: '\n333 333333333333333 ' },
   { type: 'multicomment', data: 'ccccc' },
-  { type: 'text',
-    data: ' 33333333333333333333 333333 33333333333 \n444 ' },
+  { type: 'text', data: ' 33333333333333333333 333333 33333333333 \n444 ' },
   { type: 'comment2', data: 'bbbbbbbbbbbbbb' },
   { type: 'text', data: '\n555\n666 ' },
   { type: 'multicomment', data: 'cccccccccccccc' },

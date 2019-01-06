@@ -1,8 +1,6 @@
 # split-tools
 
-> advanced text splitter
-
-> Turn a text string into a array (optional items as tokens)
+> Advanced text splitter. Turn a text string into a array (optional items as tokens)
 
 
 [![NPM version][npm-image]][npm-url]
@@ -11,19 +9,16 @@
 [![Downloads][downloads-image]][downloads-url]
 
 ## Installation
-
 ```
 npm install split-tools --save
 ```
 
 ## Usage
-
 ```javascript
 var Splitter = require('split-tools');
 
 var splitter = new Splitter(options?);
 ```
-
 - **options**
   - **matchers** An associative array in which the key is an arbitrary token ID, the value is a string or a regular expression to match
   - **parsers** An associative array in which the key is an arbitrary token ID, the value is a converter function that takes values:
@@ -31,15 +26,12 @@ var splitter = new Splitter(options?);
     - **group1, group2, ..., groupN** bracket groups specified in RegExp
     - **text** other parameters, such as offset and source string (see string.replace). By virtue of the algorithm used to separate lines, they do not carry reliable values.
 
-
-
-
 ## Participation in development
 ```
 https://github.com/lastuniverse/split-tools/issues
 ```
-## License
 
+## License
 MIT
 
 [![NPM](https://nodei.co/npm/split-tools.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/split-tools/)

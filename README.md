@@ -89,7 +89,7 @@ console.log(list);
 ```
 
 **result:**
-```json [ 
+```javascript [ 
   { type: 'text', data: '\n111\n222 ' },
   { type: 'comment1', data: ' aaaaaaaaaaaaaa' },
   { type: 'text', data: '\n222 ' },

@@ -24,7 +24,7 @@ const splitter = new Splitter(options?);
   - **parsers** An associative array in which the key is an arbitrary token ID, the value is a converter function that takes values:
     - **text** part of the text matched with RegExp specified for identical ID
     - **group1, group2, ..., groupN** bracket groups specified in RegExp
-    - **text** other parameters, such as offset and source string (see string.replace). By virtue of the algorithm used to separate lines, they do not carry reliable values.
+    - **other parameters** such as offset and source string (see string.replace). By virtue of the algorithm used to separate lines, they do not carry reliable values.
 
 ## It is important!!!
 The order of adding matchers does matter. Matchers will be processed in the same order in which they were added.

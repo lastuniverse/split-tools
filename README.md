@@ -89,7 +89,8 @@ console.log(list);
 ```
 
 **result:**
-```javascript [ 
+```javascript
+[ 
   { type: 'text', data: '\n111\n222 ' },
   { type: 'comment1', data: ' aaaaaaaaaaaaaa' },
   { type: 'text', data: '\n222 ' },

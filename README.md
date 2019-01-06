@@ -85,26 +85,28 @@ splitter.addParser("multicomment",(match,text)=>{
 
 const list = splitter.process(text);
 
-console.log("\n\nresult:\n",list);
+console.log(list);
 ```
 
->result:
-> [ { type: 'text', data: '\n111\n222 ' },
->  { type: 'comment1', data: ' aaaaaaaaaaaaaa' },
->  { type: 'text', data: '\n222 ' },
->  { type: 'comment1', data: ' aaaaaaaaaaaaaa' },
->  { type: 'text', data: '\n333 333333333333333 ' },
->  { type: 'multicomment', data: 'ccccc' },
->  { type: 'text',
->    data: ' 33333333333333333333 333333 33333333333 \n444 ' },
->  { type: 'comment2', data: ' bbbbbbbbbbbbbb' },
->  { type: 'text', data: '\n555\n666 ' },
->  { type: 'multicomment', data: ' cccccccccccccc ' },
->  { type: 'text', data: '\n777\n' },
->  { type: 'multicomment', data: ' cccccccccccccc ' },
->  { type: 'text', data: '\n888\n' },
->  { type: 'comment1', data: ' aaaaaaaaaaaaaa' },
->  { type: 'text', data: '\n999\n' } ]
+**result:**
+``` [ 
+  { type: 'text', data: '\n111\n222 ' },
+  { type: 'comment1', data: ' aaaaaaaaaaaaaa' },
+  { type: 'text', data: '\n222 ' },
+  { type: 'comment1', data: ' aaaaaaaaaaaaaa' },
+  { type: 'text', data: '\n333 333333333333333 ' },
+  { type: 'multicomment', data: 'ccccc' },
+  { type: 'text', data: ' 33333333333333333333 333333 33333333333 \n444 ' },
+  { type: 'comment2', data: ' bbbbbbbbbbbbbb' },
+  { type: 'text', data: '\n555\n666 ' },
+  { type: 'multicomment', data: ' cccccccccccccc ' },
+  { type: 'text', data: '\n777\n' },
+  { type: 'multicomment', data: ' cccccccccccccc ' },
+  { type: 'text', data: '\n888\n' },
+  { type: 'comment1', data: ' aaaaaaaaaaaaaa' },
+  { type: 'text', data: '\n999\n' }
+]
+```
 
 
 

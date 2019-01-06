@@ -28,7 +28,7 @@ const splitter = new Splitter(options?);
 
 ## Sample
 It is important to understand how the key `:key` is interpreted depending on the pattern `:key(.*)` used and quantifiers `:key*`. The following examples will help you understand the logic for obtaining key values.
-```
+```javascript
 const Splitter = require('split-tools');
 
 const text = `
@@ -89,7 +89,7 @@ console.log(list);
 ```
 
 **result:**
-``` [ 
+```json [ 
   { type: 'text', data: '\n111\n222 ' },
   { type: 'comment1', data: ' aaaaaaaaaaaaaa' },
   { type: 'text', data: '\n222 ' },

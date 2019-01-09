@@ -78,25 +78,24 @@ class Splitter {
 		return data[0];
 	}
 
-	process(text){
-		const matchers = Object
-			.values(this.matchers)
-			.sort( (a,b)=>{
-				return a.index-b.index;
-			})
-			.map(a=>a.id);
-
+	process(text, matchers){
+		if(!matchers)
+			matchers = Object
+				.values(this.matchers)
+				.sort( (a,b)=>{
+					return a.index-b.index;
+				})
+				.map(a=>a.id);
 		const list = [];
-
-		this.subProccess(text, matchers, list);
+		this.subProcess(text, matchers, list);
 		
 		return list;
 	}
 	
-	subProccess(text, matchers, list){
+	subProcess(text, matchers, list){
 		// console.log("\n\nSTART:",text,"\n", matchers,"\n", list);
 		if( !matchers.length ){
-			// console.log("subProccess: text 00");
+			// console.log("subProcess: text 00");
 			const item = this.parse("unmatched",text);
 			if( item !== undefined )
 				list.push( item );
@@ -104,7 +103,8 @@ class Splitter {
 			return;
 		}
 
-
+		matchers = matchers.slice(0);
+		
 		// console.log("matchers", matchers);
 		const id = matchers.shift();
 		const matcher = this.matchers[id];
@@ -120,13 +120,13 @@ class Splitter {
 				
 				if( index > offset ){
 					const pre_text = text.substring(offset, index);
-					// console.log("\subProccess: pre_text 00", pre_text);
-					this.subProccess(pre_text, matchers.slice(0), list);	
+					// console.log("\subProcess: pre_text 00", pre_text);
+					this.subProcess(pre_text, matchers, list);	
 				}
 
 				offset = index+sub_text.length;
 
-				// console.log("\subProccess: sub_text 00", sub_text);
+				// console.log("\subProcess: sub_text 00", sub_text);
 				const item = this.parse(matcher.id, ...argv);
 				if( item !== undefined )
 					list.push( item );
@@ -137,8 +137,8 @@ class Splitter {
 		// console.log("\nCENTER");
 		if( offset < text.length ){
 			const post_text = text.substring(offset, text.length);
-			// console.log("\subProccess: post_text 00", post_text);
-			this.subProccess(post_text, matchers.slice(0), list);	
+			// console.log("\subProcess: post_text 00", post_text);
+			this.subProcess(post_text, matchers, list);	
 		}
 
 		// console.log("\END");

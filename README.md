@@ -192,76 +192,76 @@ splitter.addParser("param",(match,name,tmp,isStr,value)=>{
 
 const list = splitter.process(text, tree.tags);
 
-console.log("\n\nresult:\n",JSON.stringify(list, null, '\t'));
+console.log("\n\nresult:\n",JSON.stringify(list, null, '  '));
 ```
 
 **result:**
 ```javascript
 [
-	{
-		"type": "tag",
-		"tag": "html",
-		"params": [
-			{
-				"type": "param",
-				"name": "param1",
-				"value": "1111"
-			},
-			{
-				"type": "param",
-				"name": "param2",
-				"value": "2222"
-			},
-			{
-				"type": "param",
-				"name": "param3",
-				"value": "333 333 333"
-			}
-		],
-		"body": [
-			{
-				"type": "tag",
-				"tag": "head",
-				"params": [],
-				"body": [
-					{
-						"type": "tag",
-						"tag": "script",
-						"params": [],
-						"body": [
-							"var script = 1;"
-						]
-					},
-					{
-						"type": "tag",
-						"tag": "style",
-						"params": [],
-						"body": [
-							"body {color: #000;}"
-						]
-					}
-				]
-			},
-			{
-				"type": "tag",
-				"tag": "body",
-				"params": [],
-				"body": [
-					{
-						"type": "tag",
-						"tag": "image",
-						"params": [
-							{
-								"type": "param",
-								"name": "src",
-								"value": "test.png"
-							}
-						]
-					}
-				]
-			}
-		]
-	}
+  {
+    "type": "tag",
+    "tag": "html",
+    "params": [
+      {
+        "type": "param",
+        "name": "param1",
+        "value": "1111"
+      },
+      {
+        "type": "param",
+        "name": "param2",
+        "value": "2222"
+      },
+      {
+        "type": "param",
+        "name": "param3",
+        "value": "333 333 333"
+      }
+    ],
+    "body": [
+      {
+        "type": "tag",
+        "tag": "head",
+        "params": [],
+        "body": [
+          {
+            "type": "tag",
+            "tag": "script",
+            "params": [],
+            "body": [
+              "var script = 1;"
+            ]
+          },
+          {
+            "type": "tag",
+            "tag": "style",
+            "params": [],
+            "body": [
+              "body {color: #000;}"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "tag",
+        "tag": "body",
+        "params": [],
+        "body": [
+          {
+            "type": "tag",
+            "tag": "image",
+            "params": [
+              {
+                "type": "param",
+                "name": "src",
+                "value": "test.png"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 ]
 ```
 

@@ -114,7 +114,87 @@ console.log(list);
 ]
 ```
 
-### advanced (tree out)
+### advanced sample 1 (tree out)
+```javascript
+const Splitter = require("./split-tools/index.js");
+
+var text = "x > 5 && (y == 7.5)";
+
+const splitter = new Splitter({
+    matchers: {
+      bracket: /\(\s*(.*)\s*\)/g,
+        operator: /\s*(\>|\<|\=\=|\!\=|\&\&|\|\||\+|\-|\*|\/|\%)\s*/g,
+        variable: /\s*([a-z]\w*)\s*/gi,
+        value: /\s*(\d[\d\.]*)\s*/gi
+    }
+});
+ 
+
+const   tree = {
+    "brackets": ["bracket", "operator", "variable", "value"]
+};
+ 
+function subSplit(id, text) {
+    console.log("subSplit:", id, "[", text, "]");
+    if(tree[id] && tree[id].length)
+        return splitter.process(text, tree[id]);
+    return text;
+}
+ 
+ 
+splitter.addParser("bracket",(match,body)=>{
+    return {
+        type: "bracket",
+        body: subSplit("brackets", body)
+    };
+});
+
+splitter.addParser("operator",(match,body)=>{
+    return {
+        type: "operator",
+        body: body
+    };
+});
+
+splitter.addParser("variable",(match,body)=>{
+    return {
+        type: "variable",
+        body: body
+    };
+});
+
+splitter.addParser("value",(match,body)=>{
+    return {
+        type: "value",
+        body: +body
+    };
+});
+ 
+ 
+const list = splitter.process(text, tree.tags);
+ 
+console.log("\n\nresult:\n",JSON.stringify(list, null, '  '));
+```
+
+**result:**
+```javascript
+ [
+  { "type": "variable", "body": "x" },
+  { "type": "operator", "body": ">" },
+  { "type": "value", "body": 5 },
+  { "type": "operator", "body": "&&" },
+  { "type": "bracket", "body": [
+      { "type": "variable", "body": "y" },
+      { "type": "operator", "body": "==" },
+      { "type": "value", "body": 7.5 }
+    ]
+  }
+]
+
+```
+
+
+### advanced sample 2 (tree out)
 ```javascript
 const Splitter = require('split-tools');
 const text = `

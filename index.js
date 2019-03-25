@@ -104,12 +104,12 @@ class Splitter {
 		}
 
 		matchers = matchers.slice(0);
-		
+
 		// console.log("matchers", matchers);
 		const id = matchers.shift();
 		const matcher = this.matchers[id];
+		
 		// console.log("matcher", id, matcher);
-
 		let offset = 0;
 		
 		text.replace(

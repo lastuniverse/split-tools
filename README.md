@@ -8,6 +8,9 @@
 [![License][license-image]][license-url]
 [![Downloads][downloads-image]][downloads-url]
 
+
+#WARNING: The package is partially inoperable (it does not know how to parse balanced brackets or other terminators with a nesting depth of more than one element and in some other cases). The corrected version of the package is numbered 2.0.0.
+
 ## Installation
 ```
 npm install split-tools --save
